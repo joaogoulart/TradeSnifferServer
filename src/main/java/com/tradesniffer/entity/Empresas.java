@@ -16,8 +16,9 @@ public class Empresas {
     @Column
     public String nome;
 
-    @Column
-    public String pais;
+    @ManyToOne()
+    @JoinColumn(referencedColumnName = "id")
+    public Pais pais;
 
     @Column
     public String produto;
@@ -37,7 +38,10 @@ public class Empresas {
     @Id
     private Long id;
 
-    public Empresas(String nome, String pais, String produto, String cidade, String telefone, double lat, double lng) {
+    public Empresas() {
+    }
+
+    public Empresas(String nome, Pais pais, String produto, String cidade, String telefone, double lat, double lng) {
         this.nome = nome;
         this.pais = pais;
         this.cidade = cidade;
@@ -55,11 +59,11 @@ public class Empresas {
         this.nome = nome;
     }
 
-    public String getPais() {
+    public Pais getPais() {
         return pais;
     }
 
-    public void setPais(String pais) {
+    public void setPais(Pais pais) {
         this.pais = pais;
     }
 
@@ -103,7 +107,6 @@ public class Empresas {
         this.produto = produto;
     }
 
-    @Id
     public Long getId() {
         return id;
     }

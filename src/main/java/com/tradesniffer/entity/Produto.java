@@ -16,12 +16,15 @@ public class Produto {
 
     @Column
     public String descricao;
+
     @Id
     private Long ncm;
 
-    @Id
     public Long getNcm() {
         return ncm;
+    }
+
+    public Produto() {
     }
 
     public void setNcm(Long ncm) {

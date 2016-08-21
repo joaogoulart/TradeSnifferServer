@@ -20,12 +20,13 @@ public class BalancaComercial {
     @Column
     public int coAno;
 
-    @Column
-    public String pais;
+    @ManyToOne()
+    @JoinColumn(referencedColumnName = "id")
+    public Pais pais;
 
     @ManyToOne()
-    @JoinColumn(referencedColumnName = "ncm")
-    public Long idProduto;
+    @JoinColumn(name = "id_produto", referencedColumnName = "ncm")
+    public Produto produto;
 
     @Column
     public String fatAgreg;
@@ -37,11 +38,14 @@ public class BalancaComercial {
     public int valorTotal;
     //TIPO	PERIODO	CO_ANO	NO_PAIS	NO_PPE_PPI	NO_FAT_AGREG	CONTINENTE	VL_FOB
 
+    @Id
     private Long id;
 
-    @Id
     public Long getId() {
         return id;
+    }
+
+    public BalancaComercial() {
     }
 
     public void setId(Long id) {
@@ -72,20 +76,20 @@ public class BalancaComercial {
         this.coAno = coAno;
     }
 
-    public String getPais() {
+    public Pais getPais() {
         return pais;
     }
 
-    public void setPais(String noPais) {
+    public void setPais(Pais noPais) {
         this.pais = noPais;
     }
 
-    public Long getIdProduto() {
-        return idProduto;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setIdProduto(Long noPpePpi) {
-        this.idProduto = noPpePpi;
+    public void setProduto(Produto noPpePpi) {
+        this.produto = noPpePpi;
     }
 
     public String getFatAgreg() {

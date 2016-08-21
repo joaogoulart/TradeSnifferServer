@@ -19,6 +19,11 @@ public class Pais {
         this.nome = nome;
     }
 
+    public Pais() {
+    }
+
+
+
     public String getNome() {
         return nome;
     }
@@ -27,9 +32,9 @@ public class Pais {
         this.nome = nome;
     }
 
+    @Id
     private Long id;
 
-    @Id
     public Long getId() {
         return id;
     }

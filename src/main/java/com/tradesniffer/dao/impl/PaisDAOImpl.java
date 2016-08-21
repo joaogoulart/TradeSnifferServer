@@ -33,10 +33,11 @@ public class PaisDAOImpl extends GenericDAOImpl<Pais, Long> implements PaisDAO {
         sb.append(" WHERE ");
         sb.append("     b.tipo = :tipo ");
         sb.append(" AND ");
-        sb.append("     b.idProduto = :id_produto ");
+        sb.append("     b.produto = :produto ");
+        sb.append("     ORDER BY b.valorTotal DESC");
 
         Query query = getSession().createQuery(sb.toString());
-        query.setParameter("id_produto", produto.getNcm());
+        query.setParameter("produto", produto);
         query.setParameter("tipo", tipo);
 
         return query.list();
