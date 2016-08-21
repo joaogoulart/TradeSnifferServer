@@ -19,11 +19,11 @@ public class PaisService {
     @Autowired
     public PaisSession paisSession;
 
-    @POST
-    @Path("/getRankingPaises")
+    @GET
+    @Path("/getRankingPaises/{id_produto}")
     @Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
     @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
-    public BalancaDTO getRankingPaises(Produto produto) {
-        return paisSession.getRankingPaises(produto);
+    public BalancaDTO getRankingPaises(@PathParam("id_produto") Long idProduto) {
+        return paisSession.getRankingPaises(idProduto);
     }
 }

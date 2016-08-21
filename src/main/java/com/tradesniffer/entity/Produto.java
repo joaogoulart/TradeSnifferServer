@@ -18,7 +18,7 @@ public class Produto {
     public String descricao;
 
     @Id
-    private Long ncm;
+    public Long ncm;
 
     public Long getNcm() {
         return ncm;

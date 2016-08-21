@@ -3,13 +3,13 @@ package com.tradesniffer.session.impl;
 import com.tradesniffer.dao.PaisDAO;
 import com.tradesniffer.dto.BalancaDTO;
 import com.tradesniffer.entity.BalancaComercial;
-import com.tradesniffer.entity.Produto;
 import com.tradesniffer.session.PaisSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,13 +24,26 @@ public class PaisSessionImpl implements PaisSession {
     public PaisDAO paisDAO;
 
     @Override
-    public BalancaDTO getRankingPaises(Produto produto) {
+    public BalancaDTO getRankingPaises(Long produto) {
         if (produto != null) {
-            List<BalancaComercial> balancaComercialListImport = paisDAO.getPaisesImportByProduto(produto, "IMPORTAÇÕES");
-            List<BalancaComercial> balancaComercialListExport = paisDAO.getPaisesImportByProduto(produto, "EXPORTAÇÕES");
             BalancaDTO balancaDTO = new BalancaDTO();
-            balancaDTO.listImportacao = balancaComercialListImport;
-            balancaDTO.listExportacao = balancaComercialListExport;
+            List<BalancaComercial> balancaComercialListImport = paisDAO.getPaisesImportByProduto(produto, "IMPORTAÇÕES");
+            List<BalancaComercial> listA = new ArrayList<>();
+            if (balancaComercialListImport.size() > 0) {
+                for (int i = 0; i < 3; i++) {
+                    listA.add(balancaComercialListImport.get(i));
+                }
+            }
+            List<BalancaComercial> balancaComercialListExport = paisDAO.getPaisesImportByProduto(produto, "EXPORTAÇÕES");
+            List<BalancaComercial> listB = new ArrayList<>();
+            if (balancaComercialListExport.size() > 0) {
+                for (int i = 0; i < 3; i++) {
+                    listB.add(balancaComercialListExport.get(i));
+                }
+            }
+
+            balancaDTO.listImportacao = listA;
+            balancaDTO.listExportacao = listB;
             return balancaDTO;
         }
         return null;

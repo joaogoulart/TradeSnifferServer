@@ -3,7 +3,6 @@ package com.tradesniffer.dao.impl;
 import com.tradesniffer.dao.PaisDAO;
 import com.tradesniffer.entity.BalancaComercial;
 import com.tradesniffer.entity.Pais;
-import com.tradesniffer.entity.Produto;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -24,7 +23,7 @@ public class PaisDAOImpl extends GenericDAOImpl<Pais, Long> implements PaisDAO {
     }
 
     @Override
-    public List<BalancaComercial> getPaisesImportByProduto(Produto produto, String tipo) {
+    public List<BalancaComercial> getPaisesImportByProduto(Long produto, String tipo) {
         StringBuilder sb = new StringBuilder();
         sb.append(" SELECT  ");
         sb.append("     b   ");
@@ -33,7 +32,7 @@ public class PaisDAOImpl extends GenericDAOImpl<Pais, Long> implements PaisDAO {
         sb.append(" WHERE ");
         sb.append("     b.tipo = :tipo ");
         sb.append(" AND ");
-        sb.append("     b.produto = :produto ");
+        sb.append("     b.produto.ncm = :produto ");
         sb.append("     ORDER BY b.valorTotal DESC");
 
         Query query = getSession().createQuery(sb.toString());
