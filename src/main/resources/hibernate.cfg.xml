@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+	
+		<!-- Dialeto do hibernate para poder gerar scripts do banco -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+	
+		<!-- Mapeamento das classes Java -->
+		<mapping class="com.tradesniffer.entity.User" />
+		<mapping class="com.tradesniffer.entity.BalancaComercial" />
+		<mapping class="com.tradesniffer.entity.Empresas" />
+		<mapping class="com.tradesniffer.entity.Produto" />
+		<mapping class="com.tradesniffer.entity.Pais" />
+
+	</session-factory>
+</hibernate-configuration>
